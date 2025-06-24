@@ -1,6 +1,6 @@
-package asd.technischleerdoel.spotitube.businessLayer
+package asd.technischleerdoel.spotitube.service
 
-import asd.technischleerdoel.spotitube.persistence.repository.TrackRepository
+import asd.technischleerdoel.spotitube.repository.TrackRepository
 import asd.technischleerdoel.spotitube.model.TrackResponse
 import org.springframework.stereotype.Service
 

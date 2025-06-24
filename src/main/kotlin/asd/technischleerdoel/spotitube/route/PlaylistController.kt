@@ -1,8 +1,8 @@
-package asd.technischleerdoel.spotitube.controller
+package asd.technischleerdoel.spotitube.route
 
 import asd.technischleerdoel.spotitube.model.Playlist
 import asd.technischleerdoel.spotitube.model.PlaylistResponse
-import asd.technischleerdoel.spotitube.businessLayer.PlaylistService
+import asd.technischleerdoel.spotitube.service.PlaylistService
 import org.springframework.web.bind.annotation.*
 
 @RestController

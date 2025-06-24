@@ -1,4 +1,4 @@
-package asd.technischleerdoel.spotitube.persistence.connection
+package asd.technischleerdoel.spotitube.repository.connection
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.jdbc.core.JdbcTemplate

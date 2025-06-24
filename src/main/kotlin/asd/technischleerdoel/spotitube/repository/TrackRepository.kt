@@ -1,6 +1,6 @@
-package asd.technischleerdoel.spotitube.persistence.repository
+package asd.technischleerdoel.spotitube.repository
 
-import asd.technischleerdoel.spotitube.persistence.connection.ConnectionManager
+import asd.technischleerdoel.spotitube.repository.connection.ConnectionManager
 import asd.technischleerdoel.spotitube.model.Track
 import asd.technischleerdoel.spotitube.model.TrackResponse
 import org.springframework.stereotype.Repository

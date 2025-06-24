@@ -1,7 +1,7 @@
-package asd.technischleerdoel.spotitube.persistence.repository
+package asd.technischleerdoel.spotitube.repository
 
 import asd.technischleerdoel.spotitube.model.Token
-import asd.technischleerdoel.spotitube.persistence.connection.ConnectionManager
+import asd.technischleerdoel.spotitube.repository.connection.ConnectionManager
 import org.springframework.dao.EmptyResultDataAccessException
 import org.springframework.stereotype.Repository
 import org.springframework.transaction.annotation.Transactional

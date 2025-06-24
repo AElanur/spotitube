@@ -1,7 +1,7 @@
-package asd.technischleerdoel.spotitube.businessLayer
+package asd.technischleerdoel.spotitube.service
 
 import asd.technischleerdoel.spotitube.model.Track
-import asd.technischleerdoel.spotitube.persistence.repository.TracksInPlaylistRepository
+import asd.technischleerdoel.spotitube.repository.TracksInPlaylistRepository
 import asd.technischleerdoel.spotitube.model.TrackResponse
 import org.springframework.stereotype.Service
 

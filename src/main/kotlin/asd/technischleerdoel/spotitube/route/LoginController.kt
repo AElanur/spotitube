@@ -1,8 +1,8 @@
-package asd.technischleerdoel.spotitube.controller
+package asd.technischleerdoel.spotitube.route
 
 import asd.technischleerdoel.spotitube.model.Token
 import asd.technischleerdoel.spotitube.model.User
-import asd.technischleerdoel.spotitube.businessLayer.LoginService
+import asd.technischleerdoel.spotitube.service.LoginService
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController

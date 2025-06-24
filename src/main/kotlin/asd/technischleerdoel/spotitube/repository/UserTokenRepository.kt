@@ -1,7 +1,7 @@
-package asd.technischleerdoel.spotitube.persistence.repository
+package asd.technischleerdoel.spotitube.repository
 
 import asd.technischleerdoel.spotitube.model.Token
-import asd.technischleerdoel.spotitube.persistence.connection.ConnectionManager
+import asd.technischleerdoel.spotitube.repository.connection.ConnectionManager
 import org.springframework.dao.EmptyResultDataAccessException
 import org.springframework.stereotype.Repository
 import org.springframework.transaction.annotation.Transactional
@@ -18,29 +18,16 @@ class UserTokenRepository(private val connectionManager: ConnectionManager) {
                 "WHERE user_id = ?"
         return try {
             connectionManager.jdbcTemplate.queryForObject(sql, { rs, _ ->
-                rs.getString("token")?.also {
-                    updateToken(userId)
-                }?.let { token ->
+                rs.getString("token")?.let {
                     Token(
                         user = rs.getString("fullname"),
-                        token = token
+                        token = rs.getString("token")
                     )
                 } ?: createTokenForUser(userId)
             }, userId)
         } catch (e: EmptyResultDataAccessException) {
             println("Error fetching token: ${e.message}")
             null
-        }
-    }
-
-    @Transactional
-    fun updateToken(userId: String) {
-        val sql = "UPDATE spotitube.user_token SET token = ? WHERE user_id = ?"
-        try {
-            connectionManager.jdbcTemplate.update(sql, generateToken(), userId)
-        } catch (e: SQLException) {
-            println("Error updating token: ${e.message}")
-            throw e
         }
     }
 

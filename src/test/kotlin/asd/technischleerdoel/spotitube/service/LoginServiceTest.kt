@@ -1,8 +1,8 @@
-package asd.technischleerdoel.spotitube.businessLayer
+package asd.technischleerdoel.spotitube.service
 
 import asd.technischleerdoel.spotitube.model.Token
 import asd.technischleerdoel.spotitube.model.User
-import asd.technischleerdoel.spotitube.persistence.repository.UserRepository
+import asd.technischleerdoel.spotitube.repository.UserRepository
 import org.h2.security.auth.AuthenticationException
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue

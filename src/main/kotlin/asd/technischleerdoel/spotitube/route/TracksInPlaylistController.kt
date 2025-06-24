@@ -1,8 +1,8 @@
-package asd.technischleerdoel.spotitube.controller
+package asd.technischleerdoel.spotitube.route
 
 import asd.technischleerdoel.spotitube.model.Track
 import asd.technischleerdoel.spotitube.model.TrackResponse
-import asd.technischleerdoel.spotitube.businessLayer.TracksInPlaylistService
+import asd.technischleerdoel.spotitube.service.TracksInPlaylistService
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable

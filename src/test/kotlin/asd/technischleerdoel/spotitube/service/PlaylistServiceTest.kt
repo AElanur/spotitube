@@ -1,8 +1,8 @@
-package asd.technischleerdoel.spotitube.businessLayer
+package asd.technischleerdoel.spotitube.service
 
 import asd.technischleerdoel.spotitube.model.Playlist
 import asd.technischleerdoel.spotitube.model.PlaylistResponse
-import asd.technischleerdoel.spotitube.persistence.repository.PlaylistRepository
+import asd.technischleerdoel.spotitube.repository.PlaylistRepository
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.BeforeEach
 import org.mockito.Mock
