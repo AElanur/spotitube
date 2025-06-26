@@ -4,6 +4,7 @@ import asd.technischleerdoel.spotitube.model.Track
 import asd.technischleerdoel.spotitube.repository.TracksInPlaylistRepository
 import asd.technischleerdoel.spotitube.model.TrackResponse
 import org.springframework.stereotype.Service
+import java.util.NoSuchElementException
 
 @Service
 class TracksInPlaylistService(private val tracksInPlaylistRepository: TracksInPlaylistRepository) {
@@ -12,12 +13,18 @@ class TracksInPlaylistService(private val tracksInPlaylistRepository: TracksInPl
     }
 
     fun addTrackToPlaylist(playlistId: String, track: Track) : TrackResponse {
-        tracksInPlaylistRepository.addTrackToPlaylist(playlistId, track)
-        return tracksInPlaylistRepository.getTracksFromPlaylist(playlistId)
+        return if (tracksInPlaylistRepository.addTrackToPlaylist(playlistId, track) > 0) {
+            tracksInPlaylistRepository.getTracksFromPlaylist(playlistId)
+        } else {
+            throw NoSuchElementException()
+        }
     }
 
-    fun deleteTrackFromPlaylist(playlistId: String, trackId: String) : TrackResponse {
-        tracksInPlaylistRepository.deleteTrackFromPlaylist(playlistId, trackId)
-        return tracksInPlaylistRepository.getTracksFromPlaylist(playlistId)
+    fun deleteTrackFromPlaylist(playlistId: String, trackId: String): TrackResponse {
+        return if (tracksInPlaylistRepository.deleteTrackFromPlaylist(playlistId, trackId) > 0) {
+            tracksInPlaylistRepository.getTracksFromPlaylist(playlistId)
+        } else {
+            throw NoSuchElementException()
+        }
     }
 }

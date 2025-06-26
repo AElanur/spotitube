@@ -13,16 +13,16 @@ class PlaylistService(private val playlistRepository: PlaylistRepository) {
     }
 
     fun deletePlaylist(id: String, token: String) : PlaylistResponse {
-        if (playlistRepository.deletePlaylist(id, token) > 0) {
-            return getPlaylists(token)
+        return if (playlistRepository.deletePlaylist(id, token) > 0) {
+            getPlaylists(token)
         } else {
             throw NoSuchElementException("Failed to delete playlist")
         }
     }
 
     fun addPlaylist(playlist: Playlist, token: String) : PlaylistResponse {
-        if (playlistRepository.addPlaylist(playlist, token) > 0) {
-            return getPlaylists(token)
+        return if (playlistRepository.addPlaylist(playlist, token) > 0) {
+            getPlaylists(token)
         } else {
             throw NoSuchElementException("Failed to add playlist")
         }

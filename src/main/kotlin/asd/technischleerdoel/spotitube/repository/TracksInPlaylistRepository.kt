@@ -32,35 +32,35 @@ class TracksInPlaylistRepository(private val connectionManager: ConnectionManage
                 )
             }, playlistId)
             TrackResponse(tracks)
-        } catch (e: EmptyResultDataAccessException) {
+        } catch (e: NoSuchElementException) {
             println("Error fetching tracks for playlist: ${e.message}")
             return TrackResponse(emptyList())
         }
     }
 
     @Transactional
-    fun addTrackToPlaylist(playlistId: String, track: Track) {
+    fun addTrackToPlaylist(playlistId: String, track: Track): Int {
         val sql = """
         INSERT INTO spotitube.track_in_playlist (track_id, playlist_id, offlineAvailable)
         VALUES (?, ?, ?)
         """
-        try {
+        return try {
             connectionManager.jdbcTemplate.update(sql, track.id, playlistId, track.offlineAvailable)
-        } catch (e: SQLException) {
+        } catch (e: NoSuchElementException) {
             println("Error adding tracks to playlist: ${e.message}")
             throw e
         }
     }
 
     @Transactional
-    fun deleteTrackFromPlaylist(playlistId: String, trackId: String) {
+    fun deleteTrackFromPlaylist(playlistId: String, trackId: String): Int {
         val sql = """
         DELETE FROM spotitube.track_in_playlist
         WHERE track_id = ? AND playlist_id = ?
         """
-        try {
+        return try {
             connectionManager.jdbcTemplate.update(sql, trackId, playlistId)
-        } catch (e: SQLException) {
+        } catch (e: NoSuchElementException) {
             println("Error deleting tracks from playlist: ${e.message}")
             throw e
         }

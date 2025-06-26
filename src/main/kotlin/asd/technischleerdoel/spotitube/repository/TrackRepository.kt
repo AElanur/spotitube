@@ -4,6 +4,7 @@ import asd.technischleerdoel.spotitube.repository.connection.ConnectionManager
 import asd.technischleerdoel.spotitube.model.Track
 import asd.technischleerdoel.spotitube.model.TrackResponse
 import org.springframework.stereotype.Repository
+import java.util.NoSuchElementException
 
 @Repository
 class TrackRepository(private val connectionManager: ConnectionManager) {
@@ -30,7 +31,7 @@ class TrackRepository(private val connectionManager: ConnectionManager) {
                 )
             }, playlistId)
             TrackResponse(tracks)
-        } catch (e: Exception) {
+        } catch (e: NoSuchElementException) {
             println("Error fetching tracks: ${e.message}")
             return TrackResponse(emptyList())
         }

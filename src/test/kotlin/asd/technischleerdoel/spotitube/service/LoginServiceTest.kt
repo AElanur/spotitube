@@ -8,14 +8,16 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.Mock
 import org.mockito.Mockito.verify
+import org.mockito.junit.jupiter.MockitoExtension
 import org.mockito.kotlin.whenever
 import org.mockito.kotlin.any
 import org.springframework.boot.test.context.SpringBootTest
 import kotlin.test.Test
 
-@SpringBootTest
+@ExtendWith(MockitoExtension::class)
 class LoginServiceTest {
 
     @Mock
@@ -55,10 +57,10 @@ class LoginServiceTest {
     fun `verify exception on faulty login`() {
         // Arrange
         whenever(userRepository.findByUsername(any(), any())).thenReturn(null)
-        val faultyUsername = "User test" // Changing username value to faulty
+        val faultyUsername = "User test"
 
         // Act & Assert
-        assertThrows<AuthenticationException> {
+        assertThrows<SecurityException> {
             loginService.verifyUser(faultyUsername, password)
         }
 
