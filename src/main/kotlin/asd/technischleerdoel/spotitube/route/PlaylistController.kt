@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.*
 class PlaylistController(private val playlistService: PlaylistService) {
 
     @GetMapping
-    fun getPlaylists(@RequestParam token:Token) : PlaylistResponse {
-        return playlistService.getPlaylists(token.token)
+    fun getPlaylists(@RequestParam token: String) : PlaylistResponse {
+        return playlistService.getPlaylists(token)
     }
 
     @DeleteMapping("/{playlistId}")

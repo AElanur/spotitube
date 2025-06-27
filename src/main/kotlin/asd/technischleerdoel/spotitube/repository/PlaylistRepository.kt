@@ -29,6 +29,9 @@ class PlaylistRepository @Autowired constructor(private val connectionManager: C
         } catch (e: DataAccessException) {
             println("No playlists found: ${e.message}")
             throw e
+        } catch(e: Exception) {
+            println("AAAAAAAAAAAAAAAAA, SOMETHING WENT WRONG: $e")
+            throw e
         }
     }
 
@@ -60,6 +63,9 @@ class PlaylistRepository @Autowired constructor(private val connectionManager: C
             connectionManager.jdbcTemplate.update(sql, playlist.name, token)
         } catch (e: DataAccessException) {
             println("Error inserting playlist, 0 records changed: $e")
+            throw e
+        } catch(e: Exception) {
+            println("AAAAAAAAAAAAAAAAA, SOMETHING WENT WRONG: $e")
             throw e
         }
     }

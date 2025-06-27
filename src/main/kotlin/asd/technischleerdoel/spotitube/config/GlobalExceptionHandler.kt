@@ -1,13 +1,13 @@
 package asd.technischleerdoel.spotitube.config
 import org.apache.coyote.BadRequestException
 import org.springframework.context.MessageSource
+import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
 import org.springframework.web.client.HttpClientErrorException.Forbidden
 import java.util.*
-import javax.naming.NotContextException
 
 @RestControllerAdvice
 class GlobalExceptionHandler(private val messageSource: MessageSource) {
@@ -17,6 +17,10 @@ class GlobalExceptionHandler(private val messageSource: MessageSource) {
     @ExceptionHandler(IllegalArgumentException::class)
     fun handleIllegalArgument(ex: IllegalArgumentException, locale: Locale): ResponseEntity<String> =
         ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.message)
+
+    @ExceptionHandler(DataIntegrityViolationException::class)
+    fun handleDataIntegrityViolation(ex: DataIntegrityViolationException, locale: Locale): ResponseEntity<String> =
+        ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid data: " + ex.mostSpecificCause.message)
 
     @ExceptionHandler(BadRequestException::class)
     fun handleBadRequestError(ex: IllegalArgumentException, locale: Locale): ResponseEntity<String> =
