@@ -11,6 +11,6 @@ import org.springframework.web.bind.annotation.RestController
 class LoginController(private val loginService: LoginService) {
     @PostMapping("/login")
     fun login(@RequestBody user: User) : Token {
-        return loginService.verifyUser(user.user, user.password)
+        return loginService.verifyUser(user)
     }
 }

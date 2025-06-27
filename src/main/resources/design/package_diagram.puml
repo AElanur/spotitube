@@ -1,0 +1,13 @@
+@startuml
+node "Client Browser" as client
+node "Application Server" as app {
+  artifact "spotitube.war"
+  [Apache Tomcat / Servlet Container]
+}
+node "Database Server" as db {
+  database "MySQL"
+}
+
+client -- app : HTTP/HTTPS
+app -- db : JDBC
+@enduml

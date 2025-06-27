@@ -2,6 +2,7 @@ package asd.technischleerdoel.spotitube.route
 
 import asd.technischleerdoel.spotitube.model.Playlist
 import asd.technischleerdoel.spotitube.model.PlaylistResponse
+import asd.technischleerdoel.spotitube.model.Token
 import asd.technischleerdoel.spotitube.service.PlaylistService
 import org.springframework.web.bind.annotation.*
 
@@ -10,8 +11,8 @@ import org.springframework.web.bind.annotation.*
 class PlaylistController(private val playlistService: PlaylistService) {
 
     @GetMapping
-    fun getPlaylists(@RequestParam token:String) : PlaylistResponse {
-        return playlistService.getPlaylists(token)
+    fun getPlaylists(@RequestParam token:Token) : PlaylistResponse {
+        return playlistService.getPlaylists(token.token)
     }
 
     @DeleteMapping("/{playlistId}")
